@@ -10,13 +10,47 @@ export default function App() {
 
   const register = async (e) => {
     e.preventDefault();
+    try{
     // Write your register code here
+    console.log("register", user)
+    const response = await fetch("http://localhost:4000/register", {body: JSON.stringify(user), headers: {
+      "content-type": "application/json"
+    }, method: "POST"})
+    const jsonResponse = await response.json()
 
+    console.log("response", jsonResponse)
+    alert("User registered")
+    setRegisterResponse(JSON.stringify(jsonResponse))
+  }
+  catch(er){
+    console.error(er)
+    alert("error with registration")
+  }
   };
 
   const login = async (e) => {
     e.preventDefault();
     // Write your login code here
+    try{
+      // Write your register code here
+      console.log("register", user)
+      const response = await fetch("http://localhost:4000/login", {body: JSON.stringify(user), headers: {
+        "content-type": "application/json"
+      }, method: "POST"})
+      console.log("response", response)
+      const jsonResponse = await response.json()
+  
+      console.log("response", jsonResponse)
+
+      alert("User registered")
+      setLoginResponse(JSON.stringify(jsonResponse))
+      localStorage.setItem("jwt", jsonResponse.jwt)
+
+    }
+    catch(er){
+      console.error(er)
+      alert("error with registration")
+    }
 
   };
 

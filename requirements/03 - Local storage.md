@@ -31,7 +31,8 @@ Imagine the below code gets profile information for a user by ID but requires a 
 fetch('http://localhost:4000/user-profile/1', {
     method: 'GET',
     headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        "Authorization": localStorage.getItem("jwt")
     }
 })
 ```
